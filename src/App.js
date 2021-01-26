@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 
 // RENDERED PAGES
-import { LoginPage } from "./pages";
+import { SignInPage, SignUpPage } from "./pages";
 
 const App = () => {
   return (
@@ -15,7 +15,8 @@ const App = () => {
       <GlobalStyles />
       <Switch>
         {/* LOGIN */}
-        <Route path="/login" component={LoginPage} />
+        <Route path="/signin" component={SignInPage} />
+        <Route path="/signup" component={SignUpPage} />
       </Switch>
     </Router>
   );
