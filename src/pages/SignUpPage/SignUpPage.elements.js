@@ -10,6 +10,15 @@ export const SignUp = styled.section`
   align-items: center;
 `;
 
+export const Error = styled.p`
+  text-align: center;
+  padding: 6px;
+  color: #fff;
+  background-color: #ff7f7f;
+  border-radius: 8px;
+  margin: 8px;
+`;
+
 export const SignUpBack = styled(Link)`
   align-self: flex-start;
   color: #8d6e63;
@@ -25,8 +34,6 @@ export const FormContainer = styled.form`
   background-color: rgba(255, 255, 255, 0.5);
   background-color: lightblue;
   border-radius: 20px;
-  height: 500px;
-  width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;

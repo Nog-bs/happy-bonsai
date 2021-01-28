@@ -6,19 +6,29 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 
 // RENDERED PAGES
-import { SignInPage, SignUpPage } from "./pages";
+import { SignUpPage, SignInPage, BonsaiBoard, ForgotPage } from "./pages";
+
+// COMPONENTS
+import { PrivateRoute } from "./components";
+
+// AUTHENTICATION
+import { AuthProvider } from "./contexts/AuthContext";
 
 const App = () => {
   return (
-    <Router>
+    <AuthProvider>
       {/* GLOBALSTYLES */}
       <GlobalStyles />
-      <Switch>
-        {/* LOGIN */}
-        <Route path="/signin" component={SignInPage} />
-        <Route path="/signup" component={SignUpPage} />
-      </Switch>
-    </Router>
+      {/* GLOBALSTYLES */}
+      <Router>
+        <Switch>
+          <PrivateRoute exact path="/" component={BonsaiBoard} />
+          <Route path="/signup" component={SignUpPage} />
+          <Route path="/login" component={SignInPage} />
+          <Route path="/forgot" component={ForgotPage} />
+        </Switch>
+      </Router>
+    </AuthProvider>
   );
 };
 

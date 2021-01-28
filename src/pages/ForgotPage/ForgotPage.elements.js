@@ -1,17 +1,10 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
-export const SignIn = styled.section`
-  width: 100%;
+export const Forgot = styled.section`
   height: 100vh;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-`;
-
-export const SignInBanner = styled.div`
-  display: flex;
   align-items: center;
 `;
 
@@ -22,16 +15,6 @@ export const Error = styled.p`
   background-color: #ff7f7f;
   border-radius: 8px;
   margin: 8px;
-`;
-
-export const SignInWelcome = styled.h1`
-  font-size: 3rem;
-  color: #654321;
-`;
-
-export const SignInBonsai = styled.img`
-  height: 200px;
-  width: 200px;
 `;
 
 export const FormContainer = styled.form`
@@ -85,6 +68,14 @@ export const InputPassword = styled.input`
   font-size: 1rem;
 `;
 
+export const InputPasswordConfirm = styled.input`
+  border-radius: 12px;
+  padding: 8px;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+`;
+
 export const InputButton = styled.button`
   margin: 12px;
   padding: 8px;
@@ -103,7 +94,3 @@ export const InputButton = styled.button`
 export const PromptSection = styled.div`
   text-align: center;
 `;
-
-export const SignUpPrompt = styled.p``;
-
-export const SignUpLink = styled(Link)``;
