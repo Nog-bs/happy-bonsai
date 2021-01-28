@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Dashboard = styled.section`
   height: 100vh;
@@ -36,6 +37,21 @@ export const Button = styled.button`
   padding: 8px;
   width: 50%;
   border-radius: 20px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(to left, #8d6e63 50%, #654321 50%) right;
+  background-size: 200%;
+  transition: 0.5s ease-out;
+  &:hover {
+    background-position: left;
+  }
+`;
+
+export const ProfileButton = styled(Link)`
+  margin: 12px;
+  padding: 8px;
+  border-radius: 20px;
+  text-decoration: none;
   border: none;
   color: #fff;
   background: linear-gradient(to left, #8d6e63 50%, #654321 50%) right;

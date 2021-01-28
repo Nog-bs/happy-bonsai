@@ -1,23 +1,13 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const Forgot = styled.section`
-  height: 100vh;
+export const Update = styled.section`
   width: 100%;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-export const ForgotBack = styled(Link)`
-  align-self: flex-start;
-  color: #8d6e63;
-  font-size: 0.75rem;
-  margin-bottom: 12px;
-
-  &:hover {
-    color: #654321;
-  }
 `;
 
 export const Error = styled.p`
@@ -25,15 +15,6 @@ export const Error = styled.p`
   padding: 6px;
   color: #fff;
   background-color: #ff7f7f;
-  border-radius: 8px;
-  margin: 8px;
-`;
-
-export const Success = styled.p`
-  text-align: center;
-  padding: 6px;
-  color: #fff;
-  background-color: #376e37;
   border-radius: 8px;
   margin: 8px;
 `;
@@ -89,14 +70,6 @@ export const InputPassword = styled.input`
   font-size: 1rem;
 `;
 
-export const InputPasswordConfirm = styled.input`
-  border-radius: 12px;
-  padding: 8px;
-  outline: none;
-  border: none;
-  font-size: 1rem;
-`;
-
 export const InputButton = styled.button`
   margin: 12px;
   padding: 8px;
@@ -111,7 +84,19 @@ export const InputButton = styled.button`
     background-position: left;
   }
 `;
-
-export const PromptSection = styled.div`
+export const CancelLink = styled(Link)`
   text-align: center;
+  text-decoration: none;
+  margin: 12px;
+  padding: 8px;
+  width: 50%;
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(to left, #654321 50%, #8d6e63 50%) right;
+  background-size: 200%;
+  transition: 0.5s ease-out;
+  &:hover {
+    background-position: left;
+  }
 `;

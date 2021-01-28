@@ -8,6 +8,7 @@ import {
   ProfileSection,
   ProfileHead,
   ProfileEmail,
+  ProfileButton,
   Button,
 } from "./BonsaiBoard.elements";
 
@@ -43,7 +44,7 @@ const BonsaiBoard = () => {
           <ProfileHead>Profile</ProfileHead>
           {error && <Error>{error}</Error>}
           <ProfileEmail>Email: {currentUser.email}</ProfileEmail>
-          <Button>Update Profile</Button>
+          <ProfileButton to="/update">Update Profile</ProfileButton>
           <Button onClick={handleLogout}>Log out</Button>
         </ProfileSection>
       </Dashboard>

@@ -6,7 +6,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 
 // RENDERED PAGES
-import { SignUpPage, SignInPage, BonsaiBoard, ForgotPage } from "./pages";
+import {
+  SignUpPage,
+  SignInPage,
+  BonsaiBoard,
+  ForgotPage,
+  UpdateProfile,
+} from "./pages";
 
 // COMPONENTS
 import { PrivateRoute } from "./components";
@@ -23,6 +29,7 @@ const App = () => {
       <Router>
         <Switch>
           <PrivateRoute exact path="/" component={BonsaiBoard} />
+          <PrivateRoute path="/update" component={UpdateProfile} />
           <Route path="/signup" component={SignUpPage} />
           <Route path="/login" component={SignInPage} />
           <Route path="/forgot" component={ForgotPage} />

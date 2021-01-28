@@ -4,7 +4,9 @@ import React, { useState, useRef } from "react";
 // STYLED COMPONENTS
 import {
   Forgot,
+  ForgotBack,
   Error,
+  Success,
   FormContainer,
   FormHead,
   InputContainer,
@@ -17,44 +19,42 @@ import {
 // AUTHENTICATION
 import { useAuth } from "../../contexts/AuthContext";
 
-// USEHISTORY
-import { useHistory } from "react-router-dom";
-
 const ForgotPage = () => {
   // USEREF
   const emailRef = useRef();
 
-  // USEHISTORY
-  const history = useHistory();
-
   // USESTATE
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   // AUTHENTICATION
-  const {} = useAuth();
+  const { resetPassword } = useAuth();
 
   let handleForgot = async (event) => {
     event.preventDefault();
 
     // LOGIN ATTEMPT
     try {
+      setMessage("");
       setError("");
       setLoading(true);
-      // await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      await resetPassword(emailRef.current.value);
+      setMessage("Check your inbox for further instructions");
     } catch {
       // CATCH FAILED LOGIN
-      setError("Failed to sign in, double check that password maybe?");
+      setError("Failed to reset password!");
     }
   };
 
   return (
     <Forgot>
       <FormContainer onSubmit={handleForgot}>
+        <ForgotBack to="/login">Go Back</ForgotBack>
         {/* HEAD */}
-        <FormHead>Forgot</FormHead>
+        <FormHead>Password Reset</FormHead>
         {error && <Error>{error}</Error>}
+        {message && <Success>{message}</Success>}
         {/* HEAD */}
         {/* ----------- */}
         {/* INPUT SECTION */}
@@ -65,7 +65,7 @@ const ForgotPage = () => {
           </InputSection>
         </InputContainer>
         <InputButton type="submit" disabled={loading}>
-          Log in
+          Reset Password
         </InputButton>
         {/* INPUT SECTION */}
         {/* ----------- */}
