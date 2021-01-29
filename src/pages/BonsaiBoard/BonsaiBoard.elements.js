@@ -99,11 +99,11 @@ export const LogSection = styled.div`
   background-color: #654321;
   color: #fff;
   width: 20%;
-  border-radius: 20px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
+  padding: 6px;
 `;
 
 export const LogSettings = styled(AiOutlineSetting)`
@@ -122,7 +122,7 @@ export const LogForm = styled.form`
   padding: 16px;
   width: 100%;
   height: 100%;
-  border-radius: 20px;
+  border-radius: 12px;
   color: black;
 `;
 
@@ -134,25 +134,45 @@ export const LogHead = styled.h2`
   color: #fff;
 `;
 
-export const LogInputContainer = styled.div`
-  background-color: #654321;
-  width: 100%;
-  padding: 16px;
-  border-radius: 12px;
-  color: white;
+export const SearchBook = styled.div`
+  display: flex;
   margin-bottom: 8px;
 `;
 
-export const LogLabel = styled.label`
+export const SearchInput = styled.input`
+  padding: 4px;
+  border-radius: 4px;
+  border: none;
+`;
+
+export const SearchButton = styled.button`
+  margin-left: 4px;
+  padding: 4px;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  background-color: #654321;
+`;
+
+export const SearchDisplay = styled.div`
+  width: 100%;
+  height: 65vh;
+  overflow: auto;
+  padding: 6px;
+`;
+
+export const SearchPrompt = styled.p`
+  color: white;
+  margin-top: 12px;
   font-size: 1rem;
 `;
 
-export const LogInput = styled.input`
-  margin-top: 4px;
-  padding: 6px 8px;
-  border-radius: 8px;
+export const NoItems = styled.p`
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
   width: 100%;
-  border: none;
+  text-align: center;
 `;
 
 export const BookListSection = styled.div`
