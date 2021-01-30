@@ -18,18 +18,38 @@ import {
 // PLACEHOLDER IMG
 import placeholder from "../../assets/images/author-placeholder.png";
 
+// FIREBASE AUTH AND DB
+import { useAuth } from "../../contexts/AuthContext";
+import { db } from "../../firebase";
+
 const BookCard = ({ ...item }) => {
   // USESTATE
   const [modal, setModal] = useState(false);
 
+  // USERDATA
+  const { currentUser } = useAuth();
   // HANDLEMODAL
   const handleModal = () => setModal(!modal);
+  //
+
+  // HANDLECONFIRM (WILL SEND USER DATA TO FIRESTORE)
+  const handleConfirm = () => {
+    setModal(!modal);
+    const data = {
+      title: item.volumeInfo.title,
+      author: item.volumeInfo.authors,
+      img: item.volumeInfo.imageLinks.smallThumbnail,
+      time: Date.now(),
+    };
+    db.ref("users/" + currentUser.uid + "/books/").push(data);
+  };
+
   return (
     <>
       {modal && (
         <AddModal>
           <AddModalPrompt>Would you like to add?</AddModalPrompt>
-          <SearchCard key={item.id}>
+          <SearchCard>
             <SearchInfo>
               <SearchName>{item.volumeInfo?.title}</SearchName>
               <SearchAuthor>
@@ -49,7 +69,7 @@ const BookCard = ({ ...item }) => {
           </SearchCard>
           <AddModalButtons>
             <CancelModal onClick={handleModal}>Cancel</CancelModal>
-            <ConfirmModal>Confirm</ConfirmModal>
+            <ConfirmModal onClick={handleConfirm}>Confirm</ConfirmModal>
           </AddModalButtons>
         </AddModal>
       )}

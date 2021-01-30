@@ -1,5 +1,5 @@
 // MODULES
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 // STYLED COMPONENTS
 import {
@@ -14,7 +14,10 @@ import {
   ProfileButton,
   Button,
   BookListSection,
+  BookListHead,
+  BookList,
   BonsaiSection,
+  BonsaiHead,
   LogSection,
   LogSettings,
   LogForm,
@@ -26,15 +29,16 @@ import {
   SearchPrompt,
 } from "./BonsaiBoard.elements";
 
-// USEAUTH
+// USEAUTH & DB
 import { useAuth } from "../../contexts/AuthContext";
+import { db } from "../../firebase";
 
 // USEHISTORY
 import { useHistory } from "react-router-dom";
 
 // AXIOS
 import axios from "axios";
-import BookCard from "../../components/BookCard/BookCard";
+import { BookCard, ReadBook } from "../../components";
 
 const BonsaiBoard = () => {
   // REF
@@ -44,6 +48,7 @@ const BonsaiBoard = () => {
   const [modal, setModal] = useState(false);
   const [list, setList] = useState([]);
   const [message, setMessage] = useState("Input a book title to search!");
+  const [read, setRead] = useState([]);
   // AUTHENTICATION
   const { currentUser, logout } = useAuth();
   // USEHISTORY
@@ -52,7 +57,6 @@ const BonsaiBoard = () => {
   // HANDLE LOG OUT
   const handleLogout = async () => {
     setError("");
-
     try {
       await logout();
       history.push("/login");
@@ -60,6 +64,18 @@ const BonsaiBoard = () => {
       setError("Failed to log out");
     }
   };
+
+  // GETS USER DATA FROM REALTIME DATABASE
+  // CHANGE THIS TO THE AUTHCONTEXT
+  useEffect(() => {
+    const data = db
+      .ref("users/" + currentUser.uid + "/books/")
+      .on("value", (snapshot) => {
+        const formatData = Object.values(snapshot.val()).reverse();
+        setRead(formatData);
+      });
+    return data;
+  }, [currentUser]);
 
   // HANDLE MODAL
   const handleModal = () => setModal(!modal);
@@ -95,8 +111,19 @@ const BonsaiBoard = () => {
           </ProfileModal>
         )}
         {/* EDIT PROFILE MODAL  */}
-        <BookListSection>BOOKLIST SECTION</BookListSection>
-        <BonsaiSection>PROGRESS TRACKING SECTION</BonsaiSection>
+        <BookListSection>
+          <BookListHead>Your reads</BookListHead>
+          {/* READ BOOKS DATA */}
+          <BookList>
+            {read?.map((item, id) => (
+              <ReadBook key={id} {...item} />
+            ))}
+          </BookList>
+          {/* READ BOOKS DATA */}
+        </BookListSection>
+        <BonsaiSection>
+          <BonsaiHead>Happy Bonsai</BonsaiHead>
+        </BonsaiSection>
         <LogSection>
           <LogSettings onClick={handleModal} />
           <LogForm onSubmit={handleSearch}>
@@ -105,6 +132,7 @@ const BonsaiBoard = () => {
               <SearchInput ref={searchRef} />
               <SearchButton type="submit">Search</SearchButton>
             </SearchBook>
+            {/* SEARCHED BOOKS DATA */}
             <SearchDisplay>
               {list?.length === 0 || list === undefined ? (
                 list === undefined ? (
@@ -113,9 +141,10 @@ const BonsaiBoard = () => {
                   <NoItems>{message}</NoItems>
                 )
               ) : (
-                list?.map((item) => <BookCard {...item} />)
+                list?.map((item) => <BookCard key={item.id} {...item} />)
               )}
             </SearchDisplay>
+            {/* SEARCHED BOOKS DATA */}
             <SearchPrompt>
               Tip: search for your book and then click on it
             </SearchPrompt>

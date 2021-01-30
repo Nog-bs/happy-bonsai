@@ -176,15 +176,31 @@ export const NoItems = styled.p`
 `;
 
 export const BookListSection = styled.div`
-  /* BACKGROUND COLOR SUBJECT TO CHANGE */
   background-color: #186118;
-  color: #fff;
+
   width: 20%;
-  border-radius: 20px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 16px;
+`;
+
+export const BookListHead = styled.h3`
+  font-size: 2rem;
+  margin-bottom: 24px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+`;
+
+export const BookList = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 6px;
+  background-color: lightgreen;
+  border-radius: 12px;
 `;
 
 export const BonsaiSection = styled.div`
@@ -192,4 +208,9 @@ export const BonsaiSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const BonsaiHead = styled.h1`
+  color: #fff;
+  font-size: 3rem;
 `;
