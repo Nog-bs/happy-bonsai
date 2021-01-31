@@ -212,6 +212,16 @@ export const BonsaiSection = styled.div`
 `;
 
 export const BonsaiHead = styled.h1`
+  text-align: center;
   color: #fff;
   font-size: 3rem;
+  width: 75%;
+`;
+
+export const BonsaiContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 `;

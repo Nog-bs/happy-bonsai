@@ -18,6 +18,7 @@ import {
   BookList,
   BonsaiSection,
   BonsaiHead,
+  BonsaiContainer,
   LogSection,
   LogSettings,
   LogForm,
@@ -125,7 +126,8 @@ const BonsaiBoard = () => {
           {/* READ BOOKS DATA */}
         </BookListSection>
         <BonsaiSection>
-          <BonsaiHead>Happy Bonsai</BonsaiHead>
+          <BonsaiHead>Log your reads and see your bonsai grow</BonsaiHead>
+          <BonsaiContainer>hello</BonsaiContainer>
         </BonsaiSection>
         <LogSection>
           <LogSettings onClick={handleModal} />
