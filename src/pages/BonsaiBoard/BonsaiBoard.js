@@ -65,17 +65,20 @@ const BonsaiBoard = () => {
     }
   };
 
-  // GETS USER DATA FROM REALTIME DATABASE
-  // CHANGE THIS TO THE AUTHCONTEXT
-  useEffect(() => {
-    const data = db
-      .ref("users/" + currentUser.uid + "/books/")
-      .on("value", (snapshot) => {
-        const formatData = Object.values(snapshot.val()).reverse();
-        setRead(formatData);
+  // GET DATA
+  const getData = (userId) => {
+    let data = db
+      .ref("users/" + userId + "/books/")
+      .once("value", (snapshot) => {
+        setRead(
+          Object.values(snapshot.val() === null ? {} : snapshot.val()).reverse()
+        );
       });
     return data;
-  }, [currentUser]);
+  };
+
+  // GETS USER DATA FROM REALTIME DATABASE
+  useEffect(() => getData(currentUser.uid), [currentUser]);
 
   // HANDLE MODAL
   const handleModal = () => setModal(!modal);
@@ -115,8 +118,8 @@ const BonsaiBoard = () => {
           <BookListHead>Your reads</BookListHead>
           {/* READ BOOKS DATA */}
           <BookList>
-            {read?.map((item, id) => (
-              <ReadBook key={id} {...item} />
+            {read?.map((item) => (
+              <ReadBook getData={getData} key={item.id} {...item} />
             ))}
           </BookList>
           {/* READ BOOKS DATA */}
@@ -141,7 +144,9 @@ const BonsaiBoard = () => {
                   <NoItems>{message}</NoItems>
                 )
               ) : (
-                list?.map((item) => <BookCard key={item.id} {...item} />)
+                list?.map((item) => (
+                  <BookCard getData={getData} key={item.id} {...item} />
+                ))
               )}
             </SearchDisplay>
             {/* SEARCHED BOOKS DATA */}

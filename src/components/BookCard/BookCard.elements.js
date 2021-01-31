@@ -1,4 +1,18 @@
 import styled from "styled-components";
+import { GrFormAdd } from "react-icons/gr";
+
+export const AddIcon = styled(GrFormAdd)`
+  display: none;
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &:hover {
+    opacity: 0.75;
+  }
+`;
 
 export const AddModal = styled.div`
   background-color: rgba(255, 255, 255, 0.5);
@@ -27,9 +41,13 @@ export const SearchCard = styled.div`
   background-color: white;
   border-radius: 12px;
   margin-bottom: 8px;
+  position: relative;
 
   &:hover {
     opacity: 0.75;
+  }
+  &:hover ${AddIcon} {
+    display: block;
   }
 `;
 

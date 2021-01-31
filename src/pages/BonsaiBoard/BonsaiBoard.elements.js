@@ -41,6 +41,7 @@ export const ProfileBack = styled(GrClose)`
 `;
 
 export const ProfileModal = styled.div`
+  z-index: 999;
   background-color: rgba(255, 255, 255, 0.75);
   position: absolute;
   top: 0;

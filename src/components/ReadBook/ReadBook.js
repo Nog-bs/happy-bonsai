@@ -1,8 +1,13 @@
 // MODULES
-import React from "react";
+import React, { useState } from "react";
 
 // STYLED COMPONENTS
 import {
+  AddModal,
+  AddModalPrompt,
+  AddModalButtons,
+  CancelModal,
+  ConfirmModal,
   ReadCard,
   ReadInfo,
   ReadName,
@@ -15,10 +20,16 @@ import {
 import placeholder from "../../assets/images/author-placeholder.png";
 
 // FIREBASE AUTH AND DB
-// import { useAuth } from "../../contexts/AuthContext";
-// import { db } from "../../firebase";
+import { useAuth } from "../../contexts/AuthContext";
+import { db } from "../../firebase";
 
-const ReadBook = ({ ...item }) => {
+const ReadBook = ({ getData, ...item }) => {
+  // USESTATE
+  const [modal, setModal] = useState(false);
+
+  // AUTHENTICATION
+  const { currentUser } = useAuth();
+
   // CONVERTS TIMESTAMP
   const timeStamp = (time) => {
     let seconds = Math.floor(new Date() - time);
@@ -45,12 +56,39 @@ const ReadBook = ({ ...item }) => {
     }
   };
 
+  // HANDLE MODAL
+  const handleModal = () => setModal(!modal);
+
+  // HANDLE DELETE
+  const handleDelete = () => {
+    db.ref("users/" + currentUser.uid + "/books/" + item.id).remove();
+    getData(currentUser.uid);
+    setModal(!modal);
+  };
+
   return (
     <>
-      <ReadCard>
+      {modal && (
+        <AddModal>
+          <AddModalPrompt>Would you like to delete?</AddModalPrompt>
+          <ReadCard>
+            <ReadInfo>
+              <ReadName>{item.title}</ReadName>
+              <ReadAuthor>By {item.author[0]}</ReadAuthor>
+              <ReadDate>{timeStamp(item.time)}</ReadDate>
+            </ReadInfo>
+            <ReadImg src={item.img ? item.img : placeholder} alt="author" />
+          </ReadCard>
+          <AddModalButtons>
+            <CancelModal onClick={handleModal}>Cancel</CancelModal>
+            <ConfirmModal onClick={handleDelete}>Confirm</ConfirmModal>
+          </AddModalButtons>
+        </AddModal>
+      )}
+      <ReadCard onClick={handleModal}>
         <ReadInfo>
-          <ReadName>{item.author}</ReadName>
-          <ReadAuthor>{item.author[0]}</ReadAuthor>
+          <ReadName>{item.title}</ReadName>
+          <ReadAuthor>By {item.author[0]}</ReadAuthor>
           <ReadDate>{timeStamp(item.time)}</ReadDate>
         </ReadInfo>
         <ReadImg src={item.img ? item.img : placeholder} alt="author" />

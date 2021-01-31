@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 // STYLED COMPONENTS
 import {
+  AddIcon,
   AddModal,
   AddModalPrompt,
   SearchCard,
@@ -22,7 +23,7 @@ import placeholder from "../../assets/images/author-placeholder.png";
 import { useAuth } from "../../contexts/AuthContext";
 import { db } from "../../firebase";
 
-const BookCard = ({ ...item }) => {
+const BookCard = ({ getData, ...item }) => {
   // USESTATE
   const [modal, setModal] = useState(false);
 
@@ -34,14 +35,17 @@ const BookCard = ({ ...item }) => {
 
   // HANDLECONFIRM (WILL SEND USER DATA TO FIRESTORE)
   const handleConfirm = () => {
-    setModal(!modal);
-    const data = {
+    // WILL CREATE KEY FOR BOOK
+    const bookKey = db.ref("users/" + currentUser.uid + "/books/").push().key;
+    db.ref("users/" + currentUser.uid + "/books/" + bookKey).update({
       title: item.volumeInfo.title,
       author: item.volumeInfo.authors,
       img: item.volumeInfo.imageLinks.smallThumbnail,
+      id: bookKey,
       time: Date.now(),
-    };
-    db.ref("users/" + currentUser.uid + "/books/").push(data);
+    });
+    getData(currentUser.uid);
+    setModal(!modal);
   };
 
   return (
@@ -74,6 +78,7 @@ const BookCard = ({ ...item }) => {
         </AddModal>
       )}
       <SearchCard onClick={handleModal} key={item.id}>
+        <AddIcon />
         <SearchInfo>
           <SearchName>{item.volumeInfo?.title}</SearchName>
           <SearchAuthor>
