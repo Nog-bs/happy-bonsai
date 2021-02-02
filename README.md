@@ -6,4 +6,6 @@ Utilizing the following react libraries/services:
 - react-icons
 - react-router-dom
 - react-three-fiber
+- three
+- axios 
 - firebase
