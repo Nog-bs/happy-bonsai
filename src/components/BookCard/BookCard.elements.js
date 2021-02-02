@@ -15,6 +15,7 @@ export const AddIcon = styled(GrFormAdd)`
 `;
 
 export const AddModal = styled.div`
+  z-index: 999;
   background-color: rgba(255, 255, 255, 0.5);
   position: absolute;
   top: 0;

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 // STYLED COMPONENTS
 import {
+  DeleteIcon,
   AddModal,
   AddModalPrompt,
   AddModalButtons,
@@ -86,6 +87,7 @@ const ReadBook = ({ getData, ...item }) => {
         </AddModal>
       )}
       <ReadCard onClick={handleModal}>
+        <DeleteIcon />
         <ReadInfo>
           <ReadName>{item.title}</ReadName>
           <ReadAuthor>By {item.author[0]}</ReadAuthor>

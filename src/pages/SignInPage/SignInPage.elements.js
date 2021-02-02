@@ -36,13 +36,12 @@ export const SignInBonsai = styled.img`
 
 export const FormContainer = styled.form`
   background-color: rgba(255, 255, 255, 0.5);
-  background-color: lightblue;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 24px;
+  padding: 42px;
 `;
 
 export const FormHead = styled.h2`

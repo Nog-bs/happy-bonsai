@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AiOutlineSetting } from "react-icons/ai";
+import { RiUserSettingsLine } from "react-icons/ri";
 import { GrClose } from "react-icons/gr";
 import { Link } from "react-router-dom";
 
@@ -96,8 +96,7 @@ export const ProfileButton = styled(Link)`
 `;
 
 export const LogSection = styled.div`
-  /* BACKGROUND COLOR SUBJECT TO CHANGE */
-  background-color: #654321;
+  background-color: rgba(255, 255, 255, 0.5);
   color: #fff;
   width: 20%;
   border-radius: 12px;
@@ -107,11 +106,13 @@ export const LogSection = styled.div`
   padding: 6px;
 `;
 
-export const LogSettings = styled(AiOutlineSetting)`
+export const LogSettingsContainer = styled.div`
+  align-self: flex-end;
+`;
+
+export const LogSettings = styled(RiUserSettingsLine)`
   height: 30px;
   width: 30px;
-  margin-left: auto;
-  margin-bottom: 12px;
 
   &:hover {
     opacity: 0.75;
@@ -119,11 +120,9 @@ export const LogSettings = styled(AiOutlineSetting)`
 `;
 
 export const LogForm = styled.form`
-  background: #8d6e63;
   padding: 16px;
   width: 100%;
   height: 100%;
-  border-radius: 12px;
   color: black;
 `;
 
@@ -152,7 +151,7 @@ export const SearchButton = styled.button`
   border-radius: 4px;
   border: none;
   color: #fff;
-  background-color: #654321;
+  background-color: rgba(255, 255, 255, 0.5);
 `;
 
 export const SearchDisplay = styled.div`
@@ -160,6 +159,8 @@ export const SearchDisplay = styled.div`
   height: 65vh;
   overflow: auto;
   padding: 6px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const SearchPrompt = styled.p`
@@ -169,6 +170,7 @@ export const SearchPrompt = styled.p`
 `;
 
 export const NoItems = styled.p`
+  margin: auto 0;
   color: #fff;
   font-weight: 700;
   font-size: 1rem;
@@ -177,8 +179,7 @@ export const NoItems = styled.p`
 `;
 
 export const BookListSection = styled.div`
-  background-color: #186118;
-
+  background-color: rgba(255, 255, 255, 0.5);
   width: 20%;
   border-radius: 12px;
   display: flex;
@@ -200,7 +201,6 @@ export const BookList = styled.div`
   height: 100%;
   overflow: auto;
   padding: 6px;
-  background-color: lightgreen;
   border-radius: 12px;
 `;
 

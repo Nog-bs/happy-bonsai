@@ -21,6 +21,7 @@ import {
   BonsaiContainer,
   LogSection,
   LogSettings,
+  LogSettingsContainer,
   LogForm,
   LogHead,
   SearchBook,
@@ -39,7 +40,7 @@ import { useHistory } from "react-router-dom";
 
 // AXIOS
 import axios from "axios";
-import { BookCard, ReadBook } from "../../components";
+import { BookCard, ReadBook, BonsaiModel } from "../../components";
 
 const BonsaiBoard = () => {
   // REF
@@ -50,6 +51,7 @@ const BonsaiBoard = () => {
   const [list, setList] = useState([]);
   const [message, setMessage] = useState("Input a book title to search!");
   const [read, setRead] = useState([]);
+  const [grow, setGrow] = useState(1);
   // AUTHENTICATION
   const { currentUser, logout } = useAuth();
   // USEHISTORY
@@ -66,20 +68,28 @@ const BonsaiBoard = () => {
     }
   };
 
+  // WILL GET AND SET PROGRESS TO SCALE BONSAI
+  // const getProgress = (books) => setGrow(books.length / 100 + grow);
+
   // GET DATA
   const getData = (userId) => {
     let data = db
       .ref("users/" + userId + "/books/")
       .once("value", (snapshot) => {
-        setRead(
-          Object.values(snapshot.val() === null ? {} : snapshot.val()).reverse()
-        );
+        let formatData = Object.values(
+          snapshot.val() === null ? {} : snapshot.val()
+        ).reverse();
+        // WILL SET THE STATES FOR DATA AND TREE
+        setRead(formatData);
+        setGrow(formatData.length / 100 + 1);
       });
     return data;
   };
 
-  // GETS USER DATA FROM REALTIME DATABASE
-  useEffect(() => getData(currentUser.uid), [currentUser]);
+  // GETS/SETS USER DATA FROM REALTIME DATABASE
+  useEffect(() => {
+    getData(currentUser.uid);
+  }, [currentUser]);
 
   // HANDLE MODAL
   const handleModal = () => setModal(!modal);
@@ -89,7 +99,9 @@ const BonsaiBoard = () => {
     event.preventDefault();
 
     if (searchRef.current.value.length === 0) {
-      return setMessage("No Items Searched");
+      setMessage("No Items Searched");
+      setList([]);
+      return;
     }
 
     axios
@@ -98,6 +110,7 @@ const BonsaiBoard = () => {
       )
       .then((result) => setList(result.data.items));
   };
+
   return (
     <>
       <Dashboard>
@@ -126,11 +139,19 @@ const BonsaiBoard = () => {
           {/* READ BOOKS DATA */}
         </BookListSection>
         <BonsaiSection>
-          <BonsaiHead>Log your reads and see your bonsai grow</BonsaiHead>
-          <BonsaiContainer>hello</BonsaiContainer>
+          <BonsaiHead>
+            {read.length}
+            {read.length === 1 ? " books " : " books "}
+            read, get that knowledge!
+          </BonsaiHead>
+          <BonsaiContainer>
+            <BonsaiModel grow={grow} />
+          </BonsaiContainer>
         </BonsaiSection>
         <LogSection>
-          <LogSettings onClick={handleModal} />
+          <LogSettingsContainer>
+            <LogSettings onClick={handleModal} />
+          </LogSettingsContainer>
           <LogForm onSubmit={handleSearch}>
             <LogHead>Log your reads!</LogHead>
             <SearchBook>

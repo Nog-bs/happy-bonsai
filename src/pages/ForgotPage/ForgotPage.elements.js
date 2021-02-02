@@ -40,7 +40,6 @@ export const Success = styled.p`
 
 export const FormContainer = styled.form`
   background-color: rgba(255, 255, 255, 0.5);
-  background-color: lightblue;
   border-radius: 20px;
   display: flex;
   flex-direction: column;

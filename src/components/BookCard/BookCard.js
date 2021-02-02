@@ -39,7 +39,10 @@ const BookCard = ({ getData, ...item }) => {
     const bookKey = db.ref("users/" + currentUser.uid + "/books/").push().key;
     db.ref("users/" + currentUser.uid + "/books/" + bookKey).update({
       title: item.volumeInfo.title,
-      author: item.volumeInfo.authors,
+      author:
+        item.volumeInfo.authors === undefined
+          ? ["Unknown Author"]
+          : item.volumeInfo.authors,
       img: item.volumeInfo.imageLinks.smallThumbnail,
       id: bookKey,
       time: Date.now(),
@@ -58,7 +61,7 @@ const BookCard = ({ getData, ...item }) => {
               <SearchName>{item.volumeInfo?.title}</SearchName>
               <SearchAuthor>
                 {item.volumeInfo?.authors === undefined
-                  ? ""
+                  ? "Unknown Author"
                   : item.volumeInfo?.authors[0]}
               </SearchAuthor>
             </SearchInfo>

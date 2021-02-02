@@ -1,6 +1,21 @@
 import styled from "styled-components";
+import { AiOutlineDelete } from "react-icons/ai";
+
+export const DeleteIcon = styled(AiOutlineDelete)`
+  display: none;
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &:hover {
+    opacity: 0.75;
+  }
+`;
 
 export const AddModal = styled.div`
+  z-index: 999;
   background-color: rgba(255, 255, 255, 0.5);
   position: absolute;
   top: 0;
@@ -31,9 +46,14 @@ export const ReadCard = styled.div`
   background-color: white;
   border-radius: 12px;
   margin-bottom: 8px;
+  position: relative;
 
   &:hover {
     opacity: 0.75;
+  }
+
+  &:hover ${DeleteIcon} {
+    display: block;
   }
 `;
 
