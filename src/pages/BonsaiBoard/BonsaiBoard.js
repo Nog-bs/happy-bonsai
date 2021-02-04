@@ -68,9 +68,6 @@ const BonsaiBoard = () => {
     }
   };
 
-  // WILL GET AND SET PROGRESS TO SCALE BONSAI
-  // const getProgress = (books) => setGrow(books.length / 100 + grow);
-
   // GET DATA
   const getData = (userId) => {
     let data = db
@@ -81,7 +78,7 @@ const BonsaiBoard = () => {
         ).reverse();
         // WILL SET THE STATES FOR DATA AND TREE
         setRead(formatData);
-        setGrow(formatData.length / 100 + 1);
+        setGrow(formatData.length);
       });
     return data;
   };

@@ -143,6 +143,7 @@ export const SearchInput = styled.input`
   padding: 4px;
   border-radius: 4px;
   border: none;
+  width: 100%;
 `;
 
 export const SearchButton = styled.button`

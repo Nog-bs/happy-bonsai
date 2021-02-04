@@ -43,7 +43,10 @@ const BookCard = ({ getData, ...item }) => {
         item.volumeInfo.authors === undefined
           ? ["Unknown Author"]
           : item.volumeInfo.authors,
-      img: item.volumeInfo.imageLinks.smallThumbnail,
+      img:
+        item.volumeInfo.imageLinks?.smallThumbnail === undefined
+          ? placeholder
+          : item.volumeInfo.imageLinks.smallThumbnail,
       id: bookKey,
       time: Date.now(),
     });

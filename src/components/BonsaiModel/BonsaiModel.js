@@ -1,38 +1,25 @@
-import React, { useRef, Suspense } from "react";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import React, { Suspense } from "react";
+import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "react-three-fiber";
-
-// BONSAI MODEL
-const Bonsai = (props) => {
-  const group = useRef();
-  const { nodes, materials } = useGLTF("/scene.gltf");
-  return (
-    <group ref={group} {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
-        <group rotation={[Math.PI / 2, 0, 0]}>
-          <group position={[0, -2, 0]} scale={[1, props.grow, 1]}>
-            <mesh
-              material={materials.lambert7}
-              geometry={nodes.pPlatonic5_lambert7_0.geometry}
-            />
-          </group>
-        </group>
-      </group>
-    </group>
-  );
-};
+import SmallBonsai from "./SmallBonsai";
+import BigBonsai from "./BigBonsai";
+import MediumBonsai from "./MediumBonsai";
 
 export default function BonsaiModel({ grow }) {
   return (
     <Canvas>
       <ambientLight intensity={1} />
-      <spotLight intensity={0.5} position={[5, 20, 20]} />
+      <spotLight intensity={1.5} position={[5, 20, 20]} />
       <Suspense fallback={null}>
-        <Bonsai grow={grow} />
+        {grow < 10 ? (
+          <SmallBonsai grow={grow} />
+        ) : grow < 30 ? (
+          <MediumBonsai grow={grow} />
+        ) : (
+          <BigBonsai />
+        )}
       </Suspense>
       <OrbitControls autoRotate={true} enableZoom={false} />
     </Canvas>
   );
 }
-
-useGLTF.preload("/scene.gltf");
