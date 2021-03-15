@@ -1,11 +1,12 @@
 # Happy Bonsai
 
-Utilizing the following react libraries/services:
+Utilizing the following react libraries/services/APIs:
 
-- styled-components
-- react-icons
-- react-router-dom
-- react-three-fiber
-- three
-- axios 
-- firebase
+- Google Books API
+- Styled-components
+- React-icons
+- React-router-dom
+- React-three-fiber
+- Three.js
+- Axios 
+- Firebase
