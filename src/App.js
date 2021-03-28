@@ -7,11 +7,11 @@ import GlobalStyles from "./GlobalStyles";
 
 // RENDERED PAGES
 import {
-  SignUpPage,
-  SignInPage,
-  BonsaiBoard,
-  ForgotPage,
-  UpdateProfile,
+    SignUpPage,
+    SignInPage,
+    BonsaiBoard,
+    ForgotPage,
+    UpdateProfile,
 } from "./pages";
 
 // COMPONENTS
@@ -21,22 +21,22 @@ import { PrivateRoute } from "./components";
 import { AuthProvider } from "./contexts/AuthContext";
 
 const App = () => {
-  return (
-    <AuthProvider>
-      {/* GLOBALSTYLES */}
-      <GlobalStyles />
-      {/* GLOBALSTYLES */}
-      <Router>
-        <Switch>
-          <PrivateRoute exact path="/" component={BonsaiBoard} />
-          <PrivateRoute path="/update" component={UpdateProfile} />
-          <Route path="/signup" component={SignUpPage} />
-          <Route path="/login" component={SignInPage} />
-          <Route path="/forgot" component={ForgotPage} />
-        </Switch>
-      </Router>
-    </AuthProvider>
-  );
+    return (
+        <AuthProvider>
+            <GlobalStyles />
+            <Router>
+                <Switch>
+                    {/* Pages that I want users to be on by default */}
+                    <Route path="/signup" component={SignUpPage} />
+                    <Route path="/login" component={SignInPage} />
+                    <Route path="/forgot" component={ForgotPage} />
+                    {/* Users can access the component only if they have logged in */}
+                    <PrivateRoute exact path="/" component={BonsaiBoard} />
+                    <PrivateRoute path="/update" component={UpdateProfile} />
+                </Switch>
+            </Router>
+        </AuthProvider>
+    );
 };
 
 export default App;
