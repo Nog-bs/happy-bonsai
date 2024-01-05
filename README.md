@@ -4,6 +4,10 @@
 
 "Happy Bonsai" is a creative application developed at BrainStation, combining 3D visualization and book tracking. Users can log reading activities and visualize their progress through a growing 3D bonsai tree.
 
+## Screenshot
+
+![Homepage](./src/assets/images/happy-bonsai.jpg)
+
 ## Key Features
 
 -   **3D Visualization:** Uses React Three Fiber for rendering bonsai trees.
