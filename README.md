@@ -1,18 +1,47 @@
 # Happy Bonsai
 
-Summary: Project that I came up with during my last few days in BrainStation. It is an application that renders 3D objects to track reader progress and allows users to log books and see their list grow. The application uses a Firebase database to authenticate users and store their data in their Realtime Database.
+## Overview
 
-To run application, first clone and then "npm start"
+"Happy Bonsai" is a creative application developed at BrainStation, combining 3D visualization and book tracking. Users can log reading activities and visualize their progress through a growing 3D bonsai tree.
 
-Deployed link: [https://happy-bonsai.netlify.app/login]
+## Key Features
 
-Utilizing the following react libraries/services/APIs:
+-   **3D Visualization:** Uses React Three Fiber for rendering bonsai trees.
+-   **Book Tracking:** Integrates with Google Books API for managing book lists.
+-   **User Authentication:** Securely handled through Firebase.
 
-- Google Books API
-- Styled-components
-- React-icons
-- React-router-dom
-- React-three-fiber
-- Three.js
-- Axios 
-- Firebase
+## Technologies Used
+
+-   React, React-DOM
+-   React Three Fiber, Three.js
+-   Styled-Components
+-   React Icons
+-   React Router Dom
+-   Axios
+-   Firebase
+
+## Live Application
+
+Check out "Happy Bonsai" live [here](https://happy-bonsai.netlify.app/login).
+
+## Running Locally
+
+To run "Happy Bonsai" on your machine:
+
+1.  Make sure you have this node version installed:
+
+        16.20.0
+
+2.  Clone the repository:
+
+        git clone <repository-link>
+
+3.  Install dependencies:
+
+        npm install
+
+4.  Start the application:
+
+        npm start
+
+The app will run on `localhost:3000`.
