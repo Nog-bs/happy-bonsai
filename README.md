@@ -28,24 +28,11 @@
 
 Check out "Happy Bonsai" live [here](https://happy-bonsai.netlify.app/login).
 
-## Running Locally
+## Running the Project Locally
 
-To run "Happy Bonsai" on your machine:
+To run this project on your local machine:
 
-1.  Make sure you have this node version installed:
-
-        16.20.0
-
-2.  Clone the repository:
-
-        git clone <repository-link>
-
-3.  Install dependencies:
-
-        npm install
-
-4.  Start the application:
-
-        npm start
-
-The app will run on `localhost:3000`.
+1. Install node version: `16.20.0`
+2. Clone the repository: `git clone [repository-link]`
+3. Install dependencies: `npm install`
+4. Start the server: `npm start`
